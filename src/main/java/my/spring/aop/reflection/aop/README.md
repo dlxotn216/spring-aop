@@ -10,15 +10,16 @@
  그러다보니 작성했던 소스를 나중에 참조하자나 커밋을 하나하나 조회해야했고 커밋의 상세 내용을 봐도  
  학습 내용과는 전혀 상관없는 변경점과 새로 추가된 내용이 복합적으로 보여서 깔끔해보이지 않았다.  
  
- <img src="https://raw.githubusercontent.com/dlxotn216/image/master/JPA_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%95%88%EA%B9%94%EB%81%94.png"  width="800px"/> 
- <br />  
-  
+ > <img src="https://raw.githubusercontent.com/dlxotn216/image/master/JPA_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%95%88%EA%B9%94%EB%81%94.png"  width="800px"/> 
+ <br /><br />
+    
+
  처음으로 학습한 내용을 git에 정리하는 시도이었기 때문에 더 아쉬웟다.
  
  그래서 모던 자바와 관련된 정리를 할 때는 좀 더 효율적으로 정리하기를 원했고  
  아래와 같이 정리를 했다.
 
- <img src="https://raw.githubusercontent.com/dlxotn216/image/master/java8_%EC%A0%95%EB%A6%AC.png" width="200px" />
+ > <img src="https://raw.githubusercontent.com/dlxotn216/image/master/java8_%EC%A0%95%EB%A6%AC.png" width="200px" />
  
  정리한 것에 대해서는 나름 만족한다. 패키지를 나누었고 패키지 안에도 소단원 별 어느정도 예제를 쉽게 찾을 수 있게  
  구분을 해두었기 때문이다.  
@@ -119,11 +120,11 @@ public class AbstractPathRunner implements ApplicationRunner {
 ```
 
 당연히 아래와 같이 AOP는 잘 동작했다.  
-==========================Start of AbstractPathRunner.abstractPathBasic()==========================  
-C:\users\taesu\desktop  
-C:\users\taesu\desktop  
-C:\users\taesu\desktop  
-===========================End   of AbstractPathRunner.abstractPathBasic()==========================  
+> ==========================Start of AbstractPathRunner.abstractPathBasic()==========================  
+> C:\users\taesu\desktop  
+> C:\users\taesu\desktop  
+> C:\users\taesu\desktop  
+> ===========================End   of AbstractPathRunner.abstractPathBasic()==========================  
    
    
 그런데 여기서 한 가지 더 게을러지고 싶었다.  
@@ -237,7 +238,7 @@ public class ChapterRunnerAspect {
 ```
 이제 될만도 한데 역시나 안된다.  
 프록시가 제대로 동작하지 않는걸까? Debugging을 걸어보면 아래와 같이 cglib가 생성한 proxy임을 알 수 있다.  
-<img src="https://raw.githubusercontent.com/dlxotn216/image/master/aop_bean_cglib%ED%99%95%EC%9D%B8.png" width="800px" />
+> <img src="https://raw.githubusercontent.com/dlxotn216/image/master/aop_bean_cglib%ED%99%95%EC%9D%B8.png" width="800px" />
 
 왜그럴까? 바로 ChapterLogger 애노테이션이 붙은 메소드가 문제다.  
 아래를 보면 private 메소드에 ChapterLogger 애노테이션을 붙였다.   
