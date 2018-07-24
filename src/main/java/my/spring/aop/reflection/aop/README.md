@@ -11,8 +11,8 @@
  학습 내용과는 전혀 상관없는 변경점과 새로 추가된 내용이 복합적으로 보여서 깔끔해보이지 않았다.  
  
  > <img src="https://raw.githubusercontent.com/dlxotn216/image/master/JPA_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%95%88%EA%B9%94%EB%81%94.png"  width="800px"/> 
- <br /><br />
-    
+ 
+ <br />    
 
  처음으로 학습한 내용을 git에 정리하는 시도이었기 때문에 더 아쉬웟다.
  
@@ -70,6 +70,7 @@
   상당히 멍청해보인다. AOP를 적용하면 훨씬 효율성있고 오히려 정리도 빨랐을텐데 말이다.   
   (게으른 개발자가 되어야 했는데 라는 생각을 다시금 했다)
   
+  <br />
   
  * **AOP를 통해서 챕터별 로그를 남기자**
  
@@ -129,14 +130,19 @@ public class AbstractPathRunner implements ApplicationRunner {
    
 그런데 여기서 한 가지 더 게을러지고 싶었다.  
 바로 ChapterLogger를 호출하는 코드도 없애는 부분이다.  
-
 최초 생각한 시나리오는 아래와 같았다.  
+
+<br />
+
 (1) 우선 아래와 같이 ChapterRunner 애노테이션을 정의한다  
  ```java
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD})
 public @interface ChapterRunner {}
 ```
+
+<br />
+
 (2) ApplicationRunner의 run 메소드 위에 뭍인다.
 ```java
 @Service
@@ -147,6 +153,8 @@ public class AbstractPathRunner implements ApplicationRunner {
 	}
 }
 ```
+
+<br />
 
 (3) ChapterLogger 애노테이션 기반으로 Aronnd advice를 지정하여 AOP에서 reflection을 통해  
 클래스의 모든 메소드 중 ChapterLogger 애노테이션이 붙은 메소드를 다 실행한다.
@@ -204,7 +212,8 @@ public class ChapterRunnerAspect {
 	}
 }
 ```
-Advice를 AfterReturning으로 바꾸었다.  하지만 마찬가지로 ChapterLogger에 걸린 AOP는 동작하지 않았다.  
+Advice를 AfterReturning으로 바꾸었다.  
+하지만 마찬가지로 ChapterLogger에 걸린 AOP는 동작하지 않았다.  
 
 왜그럴까? 바로 method.invoke(clazz.newInstance()) 부분이 문제다.  
 Spring에서 AOP는 기본적으로 Proxy로 동작하고 대상 타겟은 결국 Bean 객체이다.  
@@ -248,6 +257,10 @@ public class ChapterRunnerAspect {
     private void abstractPathBasic() {}
 }
 ```
+
+<br />
+
+
 스프링의 AOP는 접근 가능한 메소드에 대해서만 프록시로 동작한다   
 따라서 아래와 같이 public으로 바꾸어주고 reflection에서 accessible 속성을 바꾸는 코드는 제거한다.  
 ```java
@@ -303,11 +316,12 @@ public class ChapterRunnerAspect {
 }
 ```
 
-
+<br />
 
 * **마무리** 
 
-(1)  
+(1) 또 다른 구현 방법
+
 사실 ChapterRunner 애노테이션을 적용하면서 ChapterLogger 애노테이션에 적용되는 AOP는 쓸모가 없다.  
 아래와 같이 ChapterRunner 애노테이션이 적용 된 Aspect에서 처리가 가능하기 때문이다.  
 ```java
@@ -338,10 +352,12 @@ method.invoke() 전후에 ChapterLoggerAspect에서 하는 일을 하면 된다.
 하지만 이미 적용한 애노테이션을 굳이 거두고 싶진 않았고 왜 안되는지 원인 파악을 하고 싶었기에  
 관련 자료를 조사도 하고 해결하여 이렇게 정리한다.
 
-(2)  
+<br />
+
+(2) AOP 정리 필요성   
 AOP의 동작은 대충 알지만 어떤 매커니즘이 있는지 관련 조사 및 정리가 필요할 것 같다.  
   
-이전에 spring 4. 초반대를 사용할 때는 AOP가 interface를 구현한 대상에 대해 적용되고  
+이전에 spring 4 초반대를 사용할 때는 AOP가 interface를 구현한 대상에 대해 적용되고  
 그렇지 않은 경우엔 별도의 cglib 라이브러리를 추가 후 proxyTargetClass=true 와 같은 설정을 해주어야  
 interface를 구현하지 않은 클래스에도 AOP가 동작 했던 것으로 기억한다.  
 
@@ -350,10 +366,10 @@ interface를 구현하지 않은 클래스에도 AOP가 동작 했던 것으로 
 
 출처: http://ddakker.tistory.com/280 [ddakker님의 블로그]
 ```
+그래서 "Service 클래스는 항상 interface를 구현하도록 해야한다" 라는 관례도 있던 것으로 기억한다.  
 
-그래서 "Service 클래스는 항상 interface를 구현하도록 해야한다" 라는 관례도 있던 것으로 기억한다.
-
-spring boot를 사용하고 있어서인가 잠시 살펴보았지만 아래와 같이 default는 false이다.  
+혹시나 spring boot를 사용하고 있어서인가 Auto configuration이 동작하는가 싶어   
+잠시 살펴보았지만 아래와 같이 proxyTargetClass 옵션의 default는 false이다.  
 ```java
 public @interface EnableAspectJAutoProxy {
 	/**
@@ -372,6 +388,7 @@ public @interface EnableAspectJAutoProxy {
 }
 ```
 
-아마 AOP, Aspect, Weaver 등 관련 용어 및 개념 정리가 필요한 것 같다.  
+AOP, Aspect, Weaver 등 관련 용어 및 개념 정리가 필요한 것 같다.  
 아래 블로그가 글을 잘 설명하고 있는 것 같다  
+  
 <a href="https://blog.outsider.ne.kr/845">[Spring 레퍼런스] 8장 스프링의 관점 지향 프로그래밍 #3</a>
