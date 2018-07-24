@@ -1,6 +1,6 @@
-Reflection with AOP
+## Reflection with AOP
 
-* 학습용 프로젝트에 AOP를 적용하며  
+* **학습용 프로젝트에 AOP를 적용하며**  
 
  최근 advanced-java 프로젝트에서 java8 in action과 관련된 복습내용을 마쳤다.  
  이전에 JPA 학습을 진행하면서 매번 학습할 때마다 패키지를 바꾸며 커밋을 새로 올렸는데  
@@ -29,10 +29,10 @@ Reflection with AOP
  아래처럼 찍히면 ...사실 앞부분에 스레드 이름이나 패키지 이름, 실행시간 Logging level 등은 불필요 정보였고  
  매번 한줄씩 마우스 드래그하여 지워주었다.
  
- 2018-06-07 22:32:33.721 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
- 2018-06-07 22:32:33.721 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
- 2018-06-07 22:32:33.722 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
- 2018-06-07 22:32:33.722 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
+ > 2018-06-07 22:32:33.721 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
+ > 2018-06-07 22:32:33.721 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
+ > 2018-06-07 22:32:33.722 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
+ > 2018-06-07 22:32:33.722 DEBUG 6808 --- [  restartedMain] org.hibernate.SQL    : delete from app_user where user_key=?  
  
  불편함을 없애고자 모던 자바에서 정리를 할 때는 System.out.println으로 로그를 찍었다.  
  하지만 주석작업은 잘 안했다, 그냥 한번 실행해보는 것이 더 편할 것 같아서..
@@ -70,7 +70,7 @@ Reflection with AOP
   (게으른 개발자가 되어야 했는데 라는 생각을 다시금 했다)
   
   
- * AOP를 통해서 챕터별 로그를 남기자
+ * **AOP를 통해서 챕터별 로그를 남기자**
  
  앞선 경험을 통해 모던 자바 2번째 학습으로 java7 nio2를 진행하면서 AOP를 사용하기로 했다.  
  아래와 같은 예제코드를 통해서 순조로운듯 햇다. 
@@ -304,7 +304,7 @@ public class ChapterRunnerAspect {
 
 
 
-* 마무리 
+* **마무리** 
 
 (1)  
 사실 ChapterRunner 애노테이션을 적용하면서 ChapterLogger 애노테이션에 적용되는 AOP는 쓸모가 없다.  
