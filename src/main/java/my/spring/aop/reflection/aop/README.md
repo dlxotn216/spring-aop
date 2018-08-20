@@ -8,7 +8,7 @@
 
  예를들어 day01에는 day01.entitymanager 패키지 였다가 day02에는 day02.mapping 처럼 패키지 이름을 바꾸는 형태로...  
  그러다보니 작성했던 소스를 나중에 참조하자나 커밋을 하나하나 조회해야했고 커밋의 상세 내용을 봐도  
- 학습 내용과는 전혀 상관없는 변경점과 새로 추가된 내용이 복합적으로 보여서 깔끔해보이지 않았다.  
+ 학습 내용과는 전혀 상관없는 변경점과 새로 추가된 내용이 복합적으7로 보여서 깔끔해보이지 않았다.  
  
  > <img src="https://raw.githubusercontent.com/dlxotn216/image/master/JPA_%EC%8A%A4%ED%84%B0%EB%94%94_%EC%95%88%EA%B9%94%EB%81%94.png"  width="800px"/> 
  
@@ -391,4 +391,5 @@ public @interface EnableAspectJAutoProxy {
 AOP, Aspect, Weaver 등 관련 용어 및 개념 정리가 필요한 것 같다.  
 아래 블로그가 글을 잘 설명하고 있는 것 같다  
   
-<a href="https://blog.outsider.ne.kr/845">[Spring 레퍼런스] 8장 스프링의 관점 지향 프로그래밍 #3</a>
+<a href="https://blog.outsider.ne.kr/845">[Spring 레퍼런스] 8장 스프링의 관점 지향 프로그래밍 #3</a>  
+<a href="https://minwan1.github.io/2017/10/29/2017-10-29-Spring-Transaction,AspectJ-Compile">AspectJ를 사용해서 같은 클래스내에도 새로운 트랜잭션 만들기</a>
